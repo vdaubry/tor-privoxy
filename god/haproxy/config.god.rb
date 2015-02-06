@@ -1,6 +1,8 @@
 require 'fileutils'
 require 'erb'
 
+tor_instances = ENV["NUM_WORKERS"].to_i
+proxy_port=ENV["PROXY_PORT"].to_i
 current_dir = File.expand_path File.dirname(__FILE__)
 
 #Conf
@@ -10,8 +12,6 @@ config_erb_path = "#{conf_dir}/haproxy.cfg.erb"
 config_path = "#{conf_dir}/haproxy.cfg"
 @port = 5566
 
-proxy_port=8118
-tor_instances = 2
 @backends = []
 tor_instances.times.each do |num|
   @backends << {:name => 'tor', :addr => '127.0.0.1', :port => proxy_port+num}
