@@ -46,7 +46,7 @@ Changing circuit
 
 Each Tor instance is set to build a new circuit (new IP) every 60sec, see : https://www.torproject.org/docs/tor-manual.html.en#NewCircuitPeriod
 
-You can force a Tor instance to build a new circuit using the (Tor gem)[https://github.com/bendiken/tor-ruby]
+You can force a Tor instance to build a new circuit using the [Tor gem](https://github.com/bendiken/tor-ruby)
 Carefull : the ```signal``` method to send a ```newnym``` to Tor is only available on the master branch (06/02/2015)
 
 
@@ -67,9 +67,12 @@ In the Tor logs the delay seems random between 1 and 10sec
 Hashed control password :
 -------------------------
 
-    Tor will accept connections on this port and allow those connections to control the Tor process using the Tor Control Protocol (described in control-spec.txt). Note: unless you also specify one or more of HashedControlPassword or CookieAuthentication, setting this option will cause Tor to allow any process on the local host to control it.
+    > Tor will accept connections on this port and allow those connections to control the Tor process using the 
+    > Tor Control Protocol (described in control-spec.txt). Note: unless you also specify one or more of 
+    > HashedControlPassword or CookieAuthentication, setting this option will cause Tor to allow any process on 
+    > the local host to control it.
     
-If you specify a ControlPort without a HashedControlPassword or CookieAuthentication you'll get a warning in the logs (justified ;)
+If you specify a ControlPort without a HashedControlPassword or CookieAuthentication you'll get a warning in the logs (well deserved ;)
 
 In order to specify a control password, generate a hash with :
 
@@ -86,7 +89,6 @@ Tor::Controller.connect(:port => 50001) do |tor|
   tor.authenticate("password")
 end
 ```
-
 
 
 Credits :
