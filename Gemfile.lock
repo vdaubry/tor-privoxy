@@ -1,0 +1,16 @@
+GIT
+  remote: https://github.com/bendiken/tor-ruby.git
+  revision: d3e28f4f0b42db4cc896c1cae1a7059a10321880
+  ref: d3e28f4f0b42db4cc896c1cae1a7059a10321880
+  specs:
+    tor (0.1.2)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  tor!
