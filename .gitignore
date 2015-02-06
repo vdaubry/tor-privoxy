@@ -1,6 +1,5 @@
 .DS_Store
 *.log
 *.pid
-god/haproxy/config/*
 god/privoxy/config/*
 god/tor/data/*
