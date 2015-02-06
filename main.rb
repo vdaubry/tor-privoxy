@@ -16,7 +16,7 @@ class Requester
       if i%10==0
         puts "Changing IP address"
         Tor::Controller.connect(:port => 50001) do |tor|
-          tor.authenticate
+          tor.authenticate("password")
           tor.signal("newnym")
           sleep 10
         end
