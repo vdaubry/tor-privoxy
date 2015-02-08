@@ -49,11 +49,13 @@ Each Tor instance is set to build a new circuit (new IP) every 60sec, see : http
 You can force a Tor instance to build a new circuit using the [Tor gem](https://github.com/bendiken/tor-ruby)
 Carefull : the ```signal``` method to send a ```newnym``` to Tor is only available on the master branch (06/02/2015)
 
+To get the control port of the tor instance that served the current request we added a custom header ```X-Servedby``` in the response.
 
 ex:
 
 ```ruby
-  Tor::Controller.connect(:port => 50001) do |tor|
+  control_port = page.header["x-servedby"].to_i
+  Tor::Controller.connect(:port => control_port) do |tor|
     tor.authenticate
     tor.signal("newnym")
     sleep 10
@@ -63,6 +65,7 @@ ex:
 We sleep 10sec because Tor delays newnym signal : https://trac.torproject.org/projects/tor/ticket/394
 In the Tor logs the delay seems random between 1 and 10sec
 
+Warning : This only works for HTTP request, intercepting encrypted connections (HTTPS) isn't supported by Privoxy (see : http://www.privoxy.org/user-manual/config.html#ACCEPT-INTERCEPTED-REQUESTS)
 
 Hashed control password :
 -------------------------

@@ -1,6 +1,6 @@
 num_workers = ENV["NUM_WORKERS"].to_i
 tor_port = ENV["TOR_PORT"].to_i
-tor_control_port = 50001
+tor_control_port = ENV["TOR_CONTROL_PORT"].to_i
 current_dir = File.expand_path File.dirname(__FILE__)
 log_dir = "#{current_dir}/log"
 FileUtils.mkdir_p log_dir

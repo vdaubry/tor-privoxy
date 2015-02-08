@@ -3,6 +3,7 @@ require 'fileutils'
 ENV["NUM_WORKERS"] = ARGV[0] || "2"
 ENV["TOR_PORT"] = "9050"
 ENV["PROXY_PORT"] = "8118"
+ENV["TOR_CONTROL_PORT"] = "50001"
 
 current_dir = File.expand_path File.dirname(__FILE__)
 God.pid_file_directory ="#{current_dir}/pids"

@@ -15,11 +15,16 @@ frontend rotating_proxies
   bind *:<%= @port %>
   default_backend tor
   option http_proxy
-
+  
+  <% @backends.each_with_index do |b, i| %>
+    acl srv<%= i %> srv_id <%= i+1 %>
+    rspadd X-Servedby:\ <%= @tor_control_port+i %> if srv<%= i %>
+  <% end %>
+  
 backend tor
   option http_proxy
-  balance leastconn # http://cbonte.github.io/haproxy-dconv/configuration-1.5.html#balance
+  balance roundrobin
 
-  <% @backends.each do |b| %>
-  server <%= b[:name] %><%= b[:port] %> <%= b[:addr] %>:<%= b[:port] %>
+  <% @backends.each_with_index do |b, i| %>
+    server <%= b[:name] %><%= b[:port] %> <%= b[:addr] %>:<%= b[:port] %> check id <%= i+1 %> # srv_id must be > 0
   <% end %>

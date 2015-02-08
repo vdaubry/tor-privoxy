@@ -3,6 +3,7 @@ require 'erb'
 
 tor_instances = ENV["NUM_WORKERS"].to_i
 proxy_port=ENV["PROXY_PORT"].to_i
+@tor_control_port = ENV["TOR_CONTROL_PORT"].to_i
 current_dir = File.expand_path File.dirname(__FILE__)
 
 #Conf

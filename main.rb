@@ -10,12 +10,16 @@ class Requester
   def perform
     i = 1
     loop do
-      ip_address = @agent.get("http://bot.whatismyipaddress.com").content
+      page = @agent.get("http://bot.whatismyipaddress.com")
+      ip_address = page.content
       puts "Run request with IP : #{ip_address}"
+      
+      puts "Served by : #{page.header["x-servedby"]}"
       
       if i%10==0
         puts "Changing IP address"
-        Tor::Controller.connect(:port => 50001) do |tor|
+        control_port = page.header["x-servedby"].to_i
+        Tor::Controller.connect(:port => control_port) do |tor|
           tor.authenticate("password")
           tor.signal("newnym")
           sleep 10
