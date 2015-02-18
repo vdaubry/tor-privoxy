@@ -97,7 +97,7 @@ end
 Credits :
 ---------
 
-Inspired by : 
+Original idea by : 
 
 * http://blog.databigbang.com/running-your-own-anonymous-rotating-proxies/
 * https://github.com/mattes/rotating-proxy
